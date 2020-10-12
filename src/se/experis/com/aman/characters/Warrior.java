@@ -51,9 +51,12 @@ public class Warrior extends Hero implements Level {
     public void calculateXpForLevelChange(int xpToAdd) {
 
         currentXP += xpToAdd;
+        int restExp = 0;
 
         if (currentXP >= nextLevelXP) {
             level++;
+            restExp = currentXP - nextLevelXP;
+
 
             CharacterStats updatedStats = super.getHeroStats();
 
@@ -64,7 +67,7 @@ public class Warrior extends Hero implements Level {
 
             nextLevelXP = (int) (nextLevelXP * 1.1);
 
-            currentXP = 0;
+            currentXP = 0 + restExp;
 
             Util.handleWeaponLevelChange(super.getWeapon());
         }
